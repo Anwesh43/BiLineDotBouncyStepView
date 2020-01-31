@@ -210,4 +210,13 @@ class BiLineDotBouncyStepView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BiLineDotBouncyStepView {
+            val view : BiLineDotBouncyStepView = BiLineDotBouncyStepView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
