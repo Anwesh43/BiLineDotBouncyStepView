@@ -187,4 +187,26 @@ class BiLineDotBouncyStepView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BiLineDotBouncyStepView) {
+
+        private val bld : BiLineDot = BiLineDot(0)
+        private val animator : Animator = Animator(view)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            bld.draw(canvas, paint)
+            animator.animate {
+                bld.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bld.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
