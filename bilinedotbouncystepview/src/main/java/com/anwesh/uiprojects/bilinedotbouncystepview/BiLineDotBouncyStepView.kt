@@ -30,9 +30,9 @@ fun Canvas.drawBilineDot(i : Int, scale : Float, w : Float, paint : Paint) {
     val sf : Float = scale.sinify().divideScale(i, lines)
     var sj : Float = 1f - 2 * i
     val r : Float = w / rFactor
-    val x : Float = (w / 2 - r) * sf * sj
+    val x : Float = (w / 2 - 2 * r) * sf * sj
     save()
-    translate(0f, 0f)
+    translate(w * i, 0f)
     drawLine(0f, 0f, x, 0f, paint)
     drawCircle(x + r * sj, 0f, r, paint)
     restore()
