@@ -164,4 +164,27 @@ class BiLineDotBouncyStepView(ctx : Context) : View(ctx) {
         }
     }
 
+    data class BiLineDot(var i : Int) {
+
+        private var dir : Int = 1
+        private val root : BLDSNode = BLDSNode(0)
+        private var curr : BLDSNode = root
+
+        fun draw(canvas : Canvas, paint : Paint) {
+            root.draw(canvas, paint)
+        }
+
+        fun update(cb : (Float) -> Unit) {
+            curr.update {
+                curr = curr.getNext(dir) {
+                    dir *= -1
+                }
+                cb(it)
+            }
+        }
+
+        fun startUpdating(cb : () -> Unit) {
+            curr.startUpdating(cb)
+        }
+    }
 }
